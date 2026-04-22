@@ -1,0 +1,245 @@
+#:kivy 2.3.0
+#:import dp kivy.metrics.dp
+
+<RootManager>:
+
+<ScreenShell@BoxLayout>:
+    orientation: "vertical"
+    padding: "18dp", "18dp", "18dp", "12dp"
+    spacing: "14dp"
+    canvas.before:
+        Color:
+            rgba: 0.97, 0.98, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Color:
+            rgba: 0.76, 0.85, 1, 0.24
+        Ellipse:
+            pos: self.width - dp(150), self.height - dp(120)
+            size: dp(200), dp(200)
+        Color:
+            rgba: 0.63, 0.76, 1, 0.18
+        Ellipse:
+            pos: -dp(50), self.height - dp(80)
+            size: dp(150), dp(150)
+        Color:
+            rgba: 0.87, 0.92, 1, 0.45
+        Ellipse:
+            pos: self.width - dp(40), -dp(10)
+            size: dp(110), dp(110)
+
+<TopBar@BoxLayout>:
+    title: ""
+    subtitle: ""
+    size_hint_y: None
+    height: "100dp"
+    padding: "20dp", "18dp"
+    spacing: "16dp"
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [28,]
+        Color:
+            rgba: 0.26, 0.57, 0.97, 1
+        RoundedRectangle:
+            pos: self.x + dp(18), self.top - dp(10)
+            size: self.width * 0.34, dp(6)
+            radius: [10,]
+        Color:
+            rgba: 0.86, 0.92, 1, 0.95
+        Ellipse:
+            pos: self.right - dp(82), self.y + dp(16)
+            size: dp(82), dp(82)
+        Color:
+            rgba: 0.88, 0.94, 1, 0.9
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [28,]
+        Color:
+            rgba: 0.85, 0.91, 1, 0.8
+        Line:
+            rounded_rectangle: (self.x, self.y, self.width, self.height, 28)
+            width: 1
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "4dp"
+        Label:
+            text: root.title
+            color: 0.14, 0.22, 0.4, 1
+            font_size: "24sp"
+            text_size: self.size
+            halign: "left"
+            valign: "middle"
+        Label:
+            text: root.subtitle
+            color: 0.47, 0.57, 0.72, 1
+            font_size: "13sp"
+            text_size: self.size
+            halign: "left"
+            valign: "middle"
+
+<MenuButton@Button>:
+    size_hint_y: None
+    height: "52dp"
+    background_normal: ""
+    background_color: 0.26, 0.57, 0.97, 1
+    color: 1, 1, 1, 1
+    font_size: "14sp"
+    canvas.before:
+        Color:
+            rgba: 0.65, 0.79, 1, 0.35
+        RoundedRectangle:
+            pos: self.x, self.y - dp(3)
+            size: self.width, self.height
+            radius: [20,]
+
+<SecondaryButton@Button>:
+    size_hint_y: None
+    height: "44dp"
+    background_normal: ""
+    background_color: 0.9, 0.95, 1, 1
+    color: 0.28, 0.45, 0.78, 1
+    font_size: "14sp"
+
+<GhostButton@Button>:
+    size_hint_y: None
+    height: "44dp"
+    background_normal: ""
+    background_color: 0.9, 0.94, 0.9, 0
+    color: 0.43, 0.53, 0.69, 1
+    canvas.before:
+        Color:
+            rgba: 0.95, 0.97, 1, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [18,]
+        Color:
+            rgba: 0.85, 0.91, 1, 0.9
+        Line:
+            rounded_rectangle: (self.x, self.y, self.width, self.height, 18)
+            width: 1
+
+<SectionCard@BoxLayout>:
+    orientation: "vertical"
+    padding: "16dp"
+    spacing: "10dp"
+    size_hint_y: None
+    height: self.minimum_height
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [24,]
+        Color:
+            rgba: 0.82, 0.89, 1, 0.65
+        Line:
+            rounded_rectangle: (self.x, self.y, self.width, self.height, 24)
+            width: 1
+        Color:
+            rgba: 0.86, 0.92, 1, 0.28
+        RoundedRectangle:
+            pos: self.x, self.y - dp(5)
+            size: self.width, self.height
+            radius: [24,]
+
+<ActionTile@Button>:
+    title: ""
+    meta: ""
+    background_normal: ""
+    background_color: 1, 1, 1, 0
+    size_hint_y: None
+    height: "108dp"
+    canvas.before:
+        Color:
+            rgba: 0.98, 0.99, 1, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [22,]
+        Color:
+            rgba: 0.26, 0.57, 0.97, 1
+        RoundedRectangle:
+            pos: self.x, self.top - dp(8)
+            size: self.width, dp(8)
+            radius: [22, 22, 0, 0]
+    BoxLayout:
+        orientation: "vertical"
+        padding: "14dp"
+        spacing: "6dp"
+        Label:
+            text: root.title
+            color: 0.16, 0.22, 0.38, 1
+            font_size: "18sp"
+            text_size: self.size
+            halign: "left"
+            valign: "middle"
+        Label:
+            text: root.meta
+            color: 0.49, 0.59, 0.74, 1
+            font_size: "13sp"
+            text_size: self.size
+            halign: "left"
+            valign: "middle"
+
+<MetricCard@BoxLayout>:
+    title: ""
+    value: ""
+    accent: 0.26, 0.57, 0.97, 1
+    orientation: "vertical"
+    padding: "14dp"
+    spacing: "6dp"
+    size_hint_y: None
+    height: "104dp"
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [20,]
+        Color:
+            rgba: root.accent
+        RoundedRectangle:
+            pos: self.x, self.top - dp(7)
+            size: self.width, dp(7)
+            radius: [20, 20, 0, 0]
+    Label:
+        text: root.title
+        color: 0.51, 0.6, 0.73, 1
+        font_size: "13sp"
+        text_size: self.size
+        halign: "left"
+        valign: "middle"
+    Label:
+        text: root.value
+        color: 0.17, 0.24, 0.39, 1
+        font_size: "24sp"
+        text_size: self.size
+        halign: "left"
+        valign: "middle"
+
+<InfoRow@BoxLayout>:
+    label_text: ""
+    value_text: ""
+    size_hint_y: None
+    height: "28dp"
+    Label:
+        text: root.label_text
+        color: 0.52, 0.6, 0.71, 1
+        text_size: self.size
+        halign: "left"
+        valign: "middle"
+    Label:
+        text: root.value_text
+        color: 0.17, 0.24, 0.39, 1
+        text_size: self.size
+        halign: "right"
+        valign: "middle"

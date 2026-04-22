@@ -1,0 +1,114 @@
+<DetalleComisionScreen>:
+    ScreenShell:
+        TopBar:
+            title: "Detalle de comision"
+            subtitle: "Resumen de presupuesto, seguimiento y decisiones vinculadas."
+
+        SectionCard:
+            InfoRow:
+                label_text: "Titulo"
+                value_text: ""
+            Label:
+                id: detail_title
+                text: "Detalle de comision"
+                color: 0.17, 0.24, 0.39, 1
+                size_hint_y: None
+                height: "26dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+            InfoRow:
+                label_text: "Descripcion"
+                value_text: ""
+            Label:
+                id: detail_description
+                text: "Sin descripcion registrada."
+                color: 0.17, 0.24, 0.39, 1
+                size_hint_y: None
+                height: self.texture_size[1] + dp(6)
+                text_size: self.width, None
+                halign: "left"
+                valign: "middle"
+            InfoRow:
+                label_text: "Periodo"
+                value_text: ""
+            Label:
+                id: detail_period
+                text: "-"
+                color: 0.17, 0.24, 0.39, 1
+                size_hint_y: None
+                height: "26dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+
+        ScrollView:
+            do_scroll_x: False
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: "14dp"
+
+                GridLayout:
+                    cols: 2
+                    spacing: "12dp"
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    MetricCard:
+                        title: "Presupuesto aprobado"
+                        value: "$4,500"
+                        accent: 0.59, 0.46, 1, 1
+                    MetricCard:
+                        title: "Balance actual"
+                        value: "$1,280"
+                        accent: 0.26, 0.57, 0.97, 1
+                    MetricCard:
+                        title: "Propuestas"
+                        value: "03"
+                        accent: 0.95, 0.69, 0.29, 1
+                    MetricCard:
+                        title: "Archivos"
+                        value: "07"
+                        accent: 0.47, 0.69, 1, 1
+
+                SectionCard:
+                    Label:
+                        text: "Modulos relacionados"
+                        color: 0.17, 0.24, 0.39, 1
+                        font_size: "18sp"
+                        size_hint_y: None
+                        height: "28dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    ActionTile:
+                        title: "Presupuestos y ejecucion financiera"
+                        meta: "Consulta montos estimados, aprobados y avances de gasto."
+                        on_release: root.navigate("presupuestos")
+
+                    ActionTile:
+                        title: "Propuestas y votacion"
+                        meta: "Administra decisiones, registra votos y revisa resultados."
+                        on_release: root.navigate("propuestas")
+
+                    GridLayout:
+                        cols: 2
+                        spacing: "10dp"
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        MenuButton:
+                            text: "Votacion"
+                            on_release: root.navigate("votacion")
+
+                        MenuButton:
+                            text: "Reportes"
+                            on_release: root.navigate("reportes")
+
+        GhostButton:
+            text: "Volver a comisiones"
+            on_release: root.navigate("comisiones")

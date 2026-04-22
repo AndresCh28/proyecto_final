@@ -1,0 +1,18 @@
+<NotificacionesScreen>:
+    ScreenShell:
+        TopBar:
+            title: "Notificaciones"
+            subtitle: "Mensajes recientes y seguimiento de lectura."
+
+        ScrollView:
+            do_scroll_x: False
+            BoxLayout:
+                id: notifications_container
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: "10dp"
+
+        SecondaryButton:
+            text: "Volver al dashboard"
+            on_release: root.navigate("dashboard")

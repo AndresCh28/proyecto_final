@@ -1,0 +1,45 @@
+<PropuestasScreen>:
+    ScreenShell:
+        TopBar:
+            title: "Propuestas"
+            subtitle: "Seguimiento de propuestas y su ciclo de decision."
+
+        SectionCard:
+            TextInput:
+                id: propuesta_titulo_input
+                hint_text: "Titulo de la propuesta"
+                multiline: False
+                size_hint_y: None
+                height: "44dp"
+
+            TextInput:
+                id: propuesta_descripcion_input
+                hint_text: "Descripcion"
+                size_hint_y: None
+                height: "88dp"
+
+            BoxLayout:
+                size_hint_y: None
+                height: "44dp"
+                spacing: "10dp"
+
+                MenuButton:
+                    text: "Crear propuesta"
+                    on_release: root.create_propuesta()
+
+                SecondaryButton:
+                    text: "Ir a votacion"
+                    on_release: root.navigate("votacion")
+
+        ScrollView:
+            do_scroll_x: False
+            BoxLayout:
+                id: propuestas_container
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: "10dp"
+
+        SecondaryButton:
+            text: "Volver al detalle"
+            on_release: root.navigate("detalle_comision")

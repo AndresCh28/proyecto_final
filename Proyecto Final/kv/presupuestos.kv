@@ -1,0 +1,187 @@
+<PresupuestosScreen>:
+    ScreenShell:
+        TopBar:
+            title: "Presupuestos"
+            subtitle: "Registro base de montos estimados y aprobados."
+
+        GridLayout:
+            cols: 2
+            spacing: "12dp"
+            size_hint_y: None
+            height: self.minimum_height
+
+            MetricCard:
+                title: "Comision activa"
+                value: root.ids.summary_comision.text if root.ids else "-"
+            MetricCard:
+                title: "Aprobado"
+                value: root.ids.monto_aprobado_input.text if root.ids else "-"
+                accent: 0.2, 0.52, 0.34, 1
+
+        GridLayout:
+            cols: 3
+            spacing: "10dp"
+            size_hint_y: None
+            height: self.minimum_height
+
+            MetricCard:
+                title: "Ingresos"
+                value: root.ids.balance_ingresos.text if root.ids else "$0.00"
+                accent: 0.26, 0.57, 0.97, 1
+
+            MetricCard:
+                title: "Gastos"
+                value: root.ids.balance_gastos.text if root.ids else "$0.00"
+                accent: 0.95, 0.69, 0.29, 1
+
+            MetricCard:
+                title: "Balance"
+                value: root.ids.balance_total.text if root.ids else "$0.00"
+                accent: 0.59, 0.46, 1, 1
+
+        SectionCard:
+            Label:
+                text: "Formulario rapido"
+                color: 0.1, 0.18, 0.24, 1
+                font_size: "18sp"
+                size_hint_y: None
+                height: "28dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+
+            TextInput:
+                id: monto_estimado_input
+                hint_text: "Monto estimado"
+                multiline: False
+                size_hint_y: None
+                height: "44dp"
+
+            TextInput:
+                id: monto_aprobado_input
+                hint_text: "Monto aprobado"
+                multiline: False
+                size_hint_y: None
+                height: "44dp"
+
+            TextInput:
+                id: observaciones_input
+                hint_text: "Observaciones"
+                size_hint_y: None
+                height: "82dp"
+
+            BoxLayout:
+                size_hint_y: None
+                height: "44dp"
+                spacing: "10dp"
+
+                MenuButton:
+                    text: "Guardar"
+                    on_release: root.save_presupuesto()
+
+                SecondaryButton:
+                    text: "Limpiar"
+                    on_release: root.clear_form()
+
+        Label:
+            id: summary_comision
+            text: "Sin comision seleccionada"
+            color: 0.47, 0.57, 0.72, 1
+            size_hint_y: None
+            height: "24dp"
+            text_size: self.size
+            halign: "left"
+            valign: "middle"
+
+        Label:
+            id: balance_ingresos
+            text: "$0.00"
+            opacity: 0
+            size_hint_y: None
+            height: 0
+
+        Label:
+            id: balance_gastos
+            text: "$0.00"
+            opacity: 0
+            size_hint_y: None
+            height: 0
+
+        Label:
+            id: balance_total
+            text: "$0.00"
+            opacity: 0
+            size_hint_y: None
+            height: 0
+
+        SectionCard:
+            Label:
+                text: "Registrar movimiento financiero"
+                color: 0.17, 0.24, 0.39, 1
+                font_size: "18sp"
+                size_hint_y: None
+                height: "28dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+
+            TextInput:
+                id: movimiento_tipo_input
+                hint_text: "Tipo: ingreso o gasto"
+                multiline: False
+                size_hint_y: None
+                height: "44dp"
+
+            TextInput:
+                id: movimiento_monto_input
+                hint_text: "Monto"
+                multiline: False
+                size_hint_y: None
+                height: "44dp"
+
+            TextInput:
+                id: movimiento_descripcion_input
+                hint_text: "Descripcion del movimiento"
+                multiline: False
+                size_hint_y: None
+                height: "44dp"
+
+            BoxLayout:
+                size_hint_y: None
+                height: "44dp"
+                spacing: "10dp"
+
+                MenuButton:
+                    text: "Guardar movimiento"
+                    on_release: root.save_movimiento()
+
+                GhostButton:
+                    text: "Actualizar movimientos"
+                    on_release: root.load_movimientos()
+
+        SectionCard:
+            Label:
+                text: "Historial financiero"
+                color: 0.17, 0.24, 0.39, 1
+                font_size: "18sp"
+                size_hint_y: None
+                height: "28dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+
+            ScrollView:
+                do_scroll_x: False
+                size_hint_y: None
+                height: "220dp"
+
+                BoxLayout:
+                    id: movimientos_container
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: "10dp"
+
+        SecondaryButton:
+            text: "Volver al detalle"
+            on_release: root.navigate("detalle_comision")

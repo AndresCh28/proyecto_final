@@ -1,0 +1,91 @@
+<VotacionScreen>:
+    ScreenShell:
+        TopBar:
+            title: "Votacion"
+            subtitle: "Emision de votos y resumen de mayoria simple."
+
+        GridLayout:
+            cols: 3
+            spacing: "10dp"
+            size_hint_y: None
+            height: self.minimum_height
+
+            MetricCard:
+                title: "A favor"
+                value: root.ids.votos_favor_label.text if root.ids else "0"
+                accent: 0.2, 0.52, 0.34, 1
+
+            MetricCard:
+                title: "En contra"
+                value: root.ids.votos_contra_label.text if root.ids else "0"
+                accent: 0.65, 0.22, 0.22, 1
+
+            MetricCard:
+                title: "Abstenciones"
+                value: root.ids.votos_abstencion_label.text if root.ids else "0"
+                accent: 0.86, 0.56, 0.18, 1
+
+        SectionCard:
+            Label:
+                id: vote_title
+                text: "Selecciona una propuesta desde el modulo de propuestas."
+                color: 0.1, 0.18, 0.24, 1
+                text_size: self.width, None
+                halign: "left"
+                valign: "middle"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            InfoRow:
+                label_text: "Resultado actual"
+                value_text: root.ids.vote_result_label.text if root.ids else "Pendiente"
+
+            BoxLayout:
+                size_hint_y: None
+                height: "44dp"
+                spacing: "10dp"
+
+                MenuButton:
+                    text: "Votar a favor"
+                    on_release: root.emitir_voto("a_favor")
+
+                MenuButton:
+                    text: "Votar en contra"
+                    background_color: 0.65, 0.22, 0.22, 1
+                    on_release: root.emitir_voto("en_contra")
+
+                SecondaryButton:
+                    text: "Abstenerme"
+                    on_release: root.emitir_voto("abstencion")
+
+        Label:
+            id: votos_favor_label
+            text: "0"
+            opacity: 0
+            size_hint_y: None
+            height: 0
+
+        Label:
+            id: votos_contra_label
+            text: "0"
+            opacity: 0
+            size_hint_y: None
+            height: 0
+
+        Label:
+            id: votos_abstencion_label
+            text: "0"
+            opacity: 0
+            size_hint_y: None
+            height: 0
+
+        Label:
+            id: vote_result_label
+            text: "Pendiente"
+            opacity: 0
+            size_hint_y: None
+            height: 0
+
+        SecondaryButton:
+            text: "Volver a propuestas"
+            on_release: root.navigate("propuestas")

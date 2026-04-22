@@ -1,0 +1,154 @@
+#:import dp kivy.metrics.dp
+
+<LoginScreen>:
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.97, 0.98, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+            Color:
+                rgba: 0.26, 0.57, 0.97, 1
+            RoundedRectangle:
+                pos: -dp(90), self.height - dp(260)
+                size: self.width + dp(180), dp(320)
+                radius: [0, 0, 56, 56]
+            Color:
+                rgba: 0.84, 0.91, 1, 0.55
+            Ellipse:
+                pos: self.width - dp(160), self.height - dp(110)
+                size: dp(170), dp(170)
+            Color:
+                rgba: 0.78, 0.86, 1, 0.45
+            Ellipse:
+                pos: -dp(50), -dp(40)
+                size: dp(190), dp(190)
+
+        BoxLayout:
+            orientation: "vertical"
+            padding: "22dp"
+            spacing: "16dp"
+            size_hint: 0.88, None
+            height: "470dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.42}
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [30,]
+                Color:
+                    rgba: 0.83, 0.89, 1, 0.75
+                Line:
+                    rounded_rectangle: (self.x, self.y, self.width, self.height, 30)
+                    width: 1.1
+                Color:
+                    rgba: 0.86, 0.92, 1, 0.28
+                RoundedRectangle:
+                    pos: self.x, self.y - dp(6)
+                    size: self.width, self.height
+                    radius: [30,]
+
+            Label:
+                text: "SIGECOM"
+                font_size: "34sp"
+                color: 0.18, 0.25, 0.43, 1
+                size_hint_y: None
+                height: "46dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+
+            Label:
+                text: "Gestion administrativa, financiera y organizativa para comisiones."
+                font_size: "14sp"
+                color: 0.52, 0.6, 0.74, 1
+                size_hint_y: None
+                height: "44dp"
+                text_size: self.width, None
+                halign: "left"
+                valign: "middle"
+
+            Label:
+                text: "Correo institucional"
+                color: 0.25, 0.33, 0.51, 1
+                size_hint_y: None
+                height: "22dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+
+            TextInput:
+                id: correo_input
+                hint_text: "usuario@correo.com"
+                multiline: False
+                size_hint_y: None
+                height: "52dp"
+                padding: "14dp", "14dp"
+                background_normal: ""
+                background_active: ""
+                background_color: 0.96, 0.98, 1, 1
+                foreground_color: 0.18, 0.25, 0.43, 1
+                cursor_color: 0.26, 0.57, 0.97, 1
+
+            Label:
+                text: "Contrasena"
+                color: 0.25, 0.33, 0.51, 1
+                size_hint_y: None
+                height: "22dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+
+            TextInput:
+                id: password_input
+                hint_text: "Ingresa tu contrasena"
+                password: True
+                multiline: False
+                size_hint_y: None
+                height: "52dp"
+                padding: "14dp", "14dp"
+                background_normal: ""
+                background_active: ""
+                background_color: 0.96, 0.98, 1, 1
+                foreground_color: 0.18, 0.25, 0.43, 1
+                cursor_color: 0.26, 0.57, 0.97, 1
+
+            MenuButton:
+                text: "Entrar al sistema"
+                on_release: root.login()
+
+            Label:
+                id: message_label
+                text: app.status_message
+                color: 0.35, 0.46, 0.68, 1
+                text_size: self.width, None
+                halign: "center"
+                valign: "middle"
+                size_hint_y: None
+                height: self.texture_size[1] + dp(8)
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 0.78, None
+            height: "86dp"
+            pos_hint: {"center_x": 0.5, "top": 0.92}
+            spacing: "4dp"
+
+            Label:
+                text: "Sistema Integral de Gestion de Comision"
+                color: 1, 1, 1, 1
+                font_size: "18sp"
+                text_size: self.size
+                halign: "center"
+                valign: "middle"
+
+            Label:
+                text: "Plataforma movil para control administrativo, financiero y operativo."
+                color: 0.88, 0.94, 1, 1
+                font_size: "13sp"
+                text_size: self.width, None
+                halign: "center"
+                valign: "middle"

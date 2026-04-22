@@ -1,0 +1,132 @@
+<DashboardScreen>:
+    ScreenShell:
+        TopBar:
+            id: dashboard_bar
+            title: "Centro de operaciones"
+            subtitle: app.status_message
+
+        Label:
+            id: dashboard_welcome
+            text: "Bienvenido"
+            color: 0.17, 0.24, 0.39, 1
+            font_size: "24sp"
+            size_hint_y: None
+            height: "36dp"
+            text_size: self.size
+            halign: "left"
+            valign: "middle"
+
+        ScrollView:
+            do_scroll_x: False
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: "14dp"
+
+                SectionCard:
+                    spacing: "14dp"
+                    Label:
+                        text: "Resumen estrategico"
+                        color: 0.17, 0.24, 0.39, 1
+                        font_size: "18sp"
+                        size_hint_y: None
+                        height: "28dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    GridLayout:
+                        cols: 2
+                        spacing: "12dp"
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        MetricCard:
+                            title: "Comisiones activas"
+                            value: "08"
+
+                        MetricCard:
+                            title: "Notificaciones"
+                            value: "14"
+                            accent: 0.95, 0.69, 0.29, 1
+
+                        MetricCard:
+                            title: "Propuestas abiertas"
+                            value: "05"
+                            accent: 0.47, 0.69, 1, 1
+
+                        MetricCard:
+                            title: "Balance del mes"
+                            value: "$12.4k"
+                            accent: 0.59, 0.46, 1, 1
+
+                SectionCard:
+                    spacing: "12dp"
+                    Label:
+                        text: "Flujo principal"
+                        color: 0.17, 0.24, 0.39, 1
+                        font_size: "18sp"
+                        size_hint_y: None
+                        height: "28dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    ActionTile:
+                        title: "Gestionar comisiones"
+                        meta: "Consulta estados, abre detalles y organiza el trabajo de cada comision."
+                        on_release: root.navigate("comisiones")
+
+                    ActionTile:
+                        title: "Supervisar propuestas y votacion"
+                        meta: "Revisa decisiones pendientes, seguimiento de votos y resultados."
+                        on_release: root.navigate("propuestas")
+
+                SectionCard:
+                    spacing: "12dp"
+                    Label:
+                        text: "Accesos rapidos"
+                        color: 0.17, 0.24, 0.39, 1
+                        font_size: "18sp"
+                        size_hint_y: None
+                        height: "28dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    GridLayout:
+                        cols: 2
+                        spacing: "10dp"
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        MenuButton:
+                            text: "Presupuestos"
+                            on_release: root.navigate("presupuestos")
+
+                        MenuButton:
+                            text: "Votacion"
+                            on_release: root.navigate("votacion")
+
+                        MenuButton:
+                            text: "Reportes"
+                            on_release: root.navigate("reportes")
+
+                        MenuButton:
+                            text: "Notificaciones"
+                            on_release: root.navigate("notificaciones")
+
+        BoxLayout:
+            size_hint_y: None
+            height: "44dp"
+            spacing: "10dp"
+
+            GhostButton:
+                text: "Perfil"
+                on_release: root.navigate("perfil")
+
+            SecondaryButton:
+                text: "Cerrar sesion"
+                on_release: app.logout()

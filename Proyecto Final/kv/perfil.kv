@@ -1,0 +1,66 @@
+<PerfilScreen>:
+    ScreenShell:
+        TopBar:
+            title: "Perfil"
+            subtitle: "Identidad, rol operativo y estado actual dentro de SIGECOM."
+
+        SectionCard:
+            spacing: "12dp"
+            Label:
+                text: "Ficha de usuario"
+                color: 0.17, 0.24, 0.39, 1
+                font_size: "18sp"
+                size_hint_y: None
+                height: "28dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+
+            InfoRow:
+                label_text: "Nombre"
+                value_text: app.current_user.get("nombre", "-") if app.current_user else "-"
+            InfoRow:
+                label_text: "Correo"
+                value_text: app.current_user.get("correo", "-") if app.current_user else "-"
+            InfoRow:
+                label_text: "ID de sesion"
+                value_text: app.current_user.get("id", "-") if app.current_user else "-"
+
+        GridLayout:
+            cols: 2
+            spacing: "12dp"
+            size_hint_y: None
+            height: self.minimum_height
+
+            MetricCard:
+                title: "Rol actual"
+                value: app.current_user.get("rol", "Sin rol") if app.current_user else "Sin rol"
+                accent: 0.26, 0.57, 0.97, 1
+            MetricCard:
+                title: "Estado"
+                value: "Activo" if app.current_user and app.current_user.get("activo", False) else "Inactivo"
+                accent: 0.95, 0.69, 0.29, 1
+
+        SectionCard:
+            Label:
+                text: "Acciones de cuenta"
+                color: 0.17, 0.24, 0.39, 1
+                font_size: "18sp"
+                size_hint_y: None
+                height: "28dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+
+            GhostButton:
+                text: "Volver al dashboard"
+                on_release: root.navigate("dashboard")
+
+        BoxLayout:
+            size_hint_y: None
+            height: "44dp"
+            spacing: "10dp"
+
+            SecondaryButton:
+                text: "Cerrar sesion"
+                on_release: root.logout()

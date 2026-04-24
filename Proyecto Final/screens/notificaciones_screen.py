@@ -1,4 +1,5 @@
 from kivy.factory import Factory
+from kivy.metrics import dp
 from kivy.uix.label import Label
 
 from screens.base_screen import BaseScreen
@@ -60,17 +61,18 @@ class NotificacionesScreen(BaseScreen):
             text=text,
             color=(0.47, 0.57, 0.72, 1),
             size_hint_y=None,
-            height=36,
+            height=dp(36),
         )
 
     def _info_label(self, text: str):
         label = Label(
             text=text,
             color=(0.17, 0.24, 0.39, 1),
-            text_size=(0, None),
             halign="left",
-            valign="middle",
+            valign="top",
             size_hint_y=None,
+            height=dp(28),
         )
-        label.bind(texture_size=lambda inst, value: setattr(inst, "height", value[1] + 8))
+        label.bind(size=lambda inst, _: setattr(inst, "text_size", (inst.width, None)))
+        label.bind(texture_size=lambda inst, value: setattr(inst, "height", max(dp(28), value[1] + dp(8))))
         return label

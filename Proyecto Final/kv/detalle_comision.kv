@@ -30,6 +30,18 @@
                 halign: "left"
                 valign: "middle"
             InfoRow:
+                label_text: "Estado"
+                value_text: root.ids.detail_estado.text if root.ids else "Sin estado"
+            Label:
+                id: detail_estado
+                text: "Sin estado"
+                color: 0.17, 0.24, 0.39, 1
+                size_hint_y: None
+                height: "26dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+            InfoRow:
                 label_text: "Periodo"
                 value_text: ""
             Label:
@@ -42,8 +54,79 @@
                 halign: "left"
                 valign: "middle"
 
+        SectionCard:
+            Label:
+                text: "Acciones rápidas"
+                color: 0.17, 0.24, 0.39, 1
+                font_size: "18sp"
+                size_hint_y: None
+                height: "28dp"
+                text_size: self.size
+                halign: "left"
+                valign: "middle"
+
+            Label:
+                text: "Aquí puedes cambiar el estado de la comisión y subir archivos sin bajar al final de la pantalla."
+                color: 0.49, 0.59, 0.74, 1
+                font_size: "13sp"
+                size_hint_y: None
+                height: "38dp"
+                text_size: self.width, None
+                halign: "left"
+                valign: "middle"
+
+            GridLayout:
+                cols: 2
+                spacing: "10dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+                SecondaryButton:
+                    text: "Pendiente"
+                    on_release: root.change_estado(1)
+
+                SecondaryButton:
+                    text: "En proceso"
+                    on_release: root.change_estado(2)
+
+                SecondaryButton:
+                    text: "Finalizada"
+                    on_release: root.change_estado(3)
+
+                SecondaryButton:
+                    text: "Cancelada"
+                    on_release: root.change_estado(4)
+
+            TextInput:
+                id: archivo_path_input
+                hint_text: "Ruta local del archivo (ej. C:\\\\Users\\\\...\\\\documento.pdf)"
+                multiline: False
+                size_hint_y: None
+                height: "44dp"
+
+            TextInput:
+                id: archivo_nombre_input
+                hint_text: "Nombre visible del archivo (opcional)"
+                multiline: False
+                size_hint_y: None
+                height: "44dp"
+
+            BoxLayout:
+                size_hint_y: None
+                height: "44dp"
+                spacing: "10dp"
+
+                MenuButton:
+                    text: "Subir archivo"
+                    on_release: root.upload_archivo()
+
+                GhostButton:
+                    text: "Actualizar archivos"
+                    on_release: root.load_detalle()
+
         ScrollView:
             do_scroll_x: False
+            bar_width: "8dp"
 
             BoxLayout:
                 orientation: "vertical"
@@ -59,20 +142,48 @@
 
                     MetricCard:
                         title: "Presupuesto aprobado"
-                        value: "$4,500"
+                        value: root.ids.metric_presupuesto.text if root.ids else "$0.00"
                         accent: 0.59, 0.46, 1, 1
                     MetricCard:
                         title: "Balance actual"
-                        value: "$1,280"
+                        value: root.ids.metric_balance.text if root.ids else "$0.00"
                         accent: 0.26, 0.57, 0.97, 1
                     MetricCard:
                         title: "Propuestas"
-                        value: "03"
+                        value: root.ids.metric_propuestas.text if root.ids else "0"
                         accent: 0.95, 0.69, 0.29, 1
                     MetricCard:
                         title: "Archivos"
-                        value: "07"
+                        value: root.ids.metric_archivos.text if root.ids else "0"
                         accent: 0.47, 0.69, 1, 1
+
+                Label:
+                    id: metric_presupuesto
+                    text: "$0.00"
+                    opacity: 0
+                    size_hint_y: None
+                    height: 0
+
+                Label:
+                    id: metric_balance
+                    text: "$0.00"
+                    opacity: 0
+                    size_hint_y: None
+                    height: 0
+
+                Label:
+                    id: metric_propuestas
+                    text: "0"
+                    opacity: 0
+                    size_hint_y: None
+                    height: 0
+
+                Label:
+                    id: metric_archivos
+                    text: "0"
+                    opacity: 0
+                    size_hint_y: None
+                    height: 0
 
                 SectionCard:
                     Label:
@@ -108,6 +219,39 @@
                         MenuButton:
                             text: "Reportes"
                             on_release: root.navigate("reportes")
+
+                SectionCard:
+                    Label:
+                        text: "Archivos de la comision"
+                        color: 0.17, 0.24, 0.39, 1
+                        font_size: "18sp"
+                        size_hint_y: None
+                        height: "28dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    Label:
+                        text: "Los archivos que subas aparecerán en esta lista."
+                        color: 0.49, 0.59, 0.74, 1
+                        font_size: "13sp"
+                        size_hint_y: None
+                        height: "22dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    ScrollView:
+                        do_scroll_x: False
+                        size_hint_y: None
+                        height: "220dp"
+
+                        BoxLayout:
+                            id: archivos_container
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: self.minimum_height
+                            spacing: "10dp"
 
         GhostButton:
             text: "Volver a comisiones"

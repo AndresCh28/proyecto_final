@@ -4,140 +4,184 @@
             title: "Comisiones"
             subtitle: "Vista ejecutiva del estado, periodo y gestion de cada comision."
 
-        GridLayout:
-            cols: 3
-            spacing: "10dp"
-            size_hint_y: None
-            height: self.minimum_height
-
-            MetricCard:
-                title: "Pendientes"
-                value: "02"
-                accent: 0.95, 0.69, 0.29, 1
-
-            MetricCard:
-                title: "En proceso"
-                value: "04"
-                accent: 0.26, 0.57, 0.97, 1
-
-            MetricCard:
-                title: "Finalizadas"
-                value: "02"
-                accent: 0.59, 0.46, 1, 1
-
-        SectionCard:
-            Label:
-                text: "Crear nueva comision"
-                color: 0.17, 0.24, 0.39, 1
-                font_size: "18sp"
-                size_hint_y: None
-                height: "28dp"
-                text_size: self.size
-                halign: "left"
-                valign: "middle"
-
-            Label:
-                text: "Titulo de la comision"
-                color: 0.49, 0.59, 0.74, 1
-                size_hint_y: None
-                height: "22dp"
-                text_size: self.size
-                halign: "left"
-                valign: "middle"
-            TextInput:
-                id: titulo_input
-                hint_text: "Ej. Feria de innovacion"
-                multiline: False
-                size_hint_y: None
-                height: "44dp"
-
-            Label:
-                text: "Descripcion"
-                color: 0.49, 0.59, 0.74, 1
-                size_hint_y: None
-                height: "22dp"
-                text_size: self.size
-                halign: "left"
-                valign: "middle"
-            TextInput:
-                id: descripcion_input
-                hint_text: "Describe el objetivo general"
-                multiline: False
-                size_hint_y: None
-                height: "44dp"
-
-            Label:
-                text: "Fechas"
-                color: 0.49, 0.59, 0.74, 1
-                size_hint_y: None
-                height: "22dp"
-                text_size: self.size
-                halign: "left"
-                valign: "middle"
-            BoxLayout:
-                size_hint_y: None
-                height: "44dp"
-                spacing: "10dp"
-
-                TextInput:
-                    id: fecha_inicio_input
-                    hint_text: "Fecha inicio YYYY-MM-DD"
-                    multiline: False
-
-                TextInput:
-                    id: fecha_fin_input
-                    hint_text: "Fecha fin YYYY-MM-DD"
-                    multiline: False
-
-            Label:
-                text: "Correo destino (opcional)"
-                color: 0.49, 0.59, 0.74, 1
-                size_hint_y: None
-                height: "22dp"
-                text_size: self.size
-                halign: "left"
-                valign: "middle"
-
-            TextInput:
-                id: correo_destino_input
-                hint_text: "correo@ejemplo.com para notificacion"
-                multiline: False
-                size_hint_y: None
-                height: "44dp"
-
-            BoxLayout:
-                size_hint_y: None
-                height: "44dp"
-                spacing: "10dp"
-
-                MenuButton:
-                    text: "Nueva comision"
-                    on_release: root.create_comision()
-
-                GhostButton:
-                    text: "Actualizar lista"
-                    on_release: root.load_comisiones()
-
-        SectionCard:
-            Label:
-                text: "Comisiones registradas"
-                color: 0.17, 0.24, 0.39, 1
-                font_size: "18sp"
-                size_hint_y: None
-                height: "28dp"
-                text_size: self.size
-                halign: "left"
-                valign: "middle"
-
         ScrollView:
             do_scroll_x: False
+            bar_width: "8dp"
 
             BoxLayout:
-                id: comisiones_container
                 orientation: "vertical"
                 size_hint_y: None
                 height: self.minimum_height
-                spacing: "10dp"
+                spacing: "14dp"
+
+                GridLayout:
+                    cols: 3
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    MetricCard:
+                        title: "Pendientes"
+                        value: root.ids.metric_pendientes.text if root.ids else "0"
+                        accent: 0.95, 0.69, 0.29, 1
+
+                    MetricCard:
+                        title: "En proceso"
+                        value: root.ids.metric_proceso.text if root.ids else "0"
+                        accent: 0.26, 0.57, 0.97, 1
+
+                    MetricCard:
+                        title: "Finalizadas"
+                        value: root.ids.metric_finalizadas.text if root.ids else "0"
+                        accent: 0.59, 0.46, 1, 1
+
+                SectionCard:
+                    Label:
+                        id: form_title
+                        text: "Crear nueva comision"
+                        color: 0.17, 0.24, 0.39, 1
+                        font_size: "18sp"
+                        size_hint_y: None
+                        height: "28dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    Label:
+                        text: "Titulo de la comision"
+                        color: 0.49, 0.59, 0.74, 1
+                        size_hint_y: None
+                        height: "22dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+                    TextInput:
+                        id: titulo_input
+                        hint_text: "Ej. Feria de innovacion"
+                        multiline: False
+                        size_hint_y: None
+                        height: "44dp"
+
+                    Label:
+                        text: "Descripcion"
+                        color: 0.49, 0.59, 0.74, 1
+                        size_hint_y: None
+                        height: "22dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+                    TextInput:
+                        id: descripcion_input
+                        hint_text: "Describe el objetivo general"
+                        multiline: False
+                        size_hint_y: None
+                        height: "44dp"
+
+                    Label:
+                        text: "Fechas"
+                        color: 0.49, 0.59, 0.74, 1
+                        size_hint_y: None
+                        height: "22dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+                    BoxLayout:
+                        size_hint_y: None
+                        height: "44dp"
+                        spacing: "10dp"
+
+                        TextInput:
+                            id: fecha_inicio_input
+                            hint_text: "Fecha inicio YYYY-MM-DD"
+                            multiline: False
+
+                        TextInput:
+                            id: fecha_fin_input
+                            hint_text: "Fecha fin YYYY-MM-DD"
+                            multiline: False
+
+                    Label:
+                        text: "Correo destino (opcional)"
+                        color: 0.49, 0.59, 0.74, 1
+                        size_hint_y: None
+                        height: "22dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    TextInput:
+                        id: correo_destino_input
+                        hint_text: "correo@ejemplo.com para notificacion"
+                        multiline: False
+                        size_hint_y: None
+                        height: "44dp"
+
+                    BoxLayout:
+                        size_hint_y: None
+                        height: "44dp"
+                        spacing: "10dp"
+
+                        MenuButton:
+                            id: save_button
+                            text: "Nueva comision"
+                            on_release: root.create_comision()
+
+                        SecondaryButton:
+                            text: "Limpiar"
+                            on_release: root.clear_form()
+
+                        GhostButton:
+                            text: "Actualizar lista"
+                            on_release: root.load_comisiones()
+
+                Label:
+                    id: metric_pendientes
+                    text: "0"
+                    opacity: 0
+                    size_hint_y: None
+                    height: 0
+
+                Label:
+                    id: metric_proceso
+                    text: "0"
+                    opacity: 0
+                    size_hint_y: None
+                    height: 0
+
+                Label:
+                    id: metric_finalizadas
+                    text: "0"
+                    opacity: 0
+                    size_hint_y: None
+                    height: 0
+
+                SectionCard:
+                    Label:
+                        text: "Comisiones registradas"
+                        color: 0.17, 0.24, 0.39, 1
+                        font_size: "18sp"
+                        size_hint_y: None
+                        height: "28dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    Label:
+                        text: "Cada tarjeta incluye dos acciones visibles: Abrir detalle y Editar."
+                        color: 0.49, 0.59, 0.74, 1
+                        font_size: "13sp"
+                        size_hint_y: None
+                        height: "22dp"
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                BoxLayout:
+                    id: comisiones_container
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: "10dp"
 
         GhostButton:
             text: "Volver al dashboard"

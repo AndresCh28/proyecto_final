@@ -17,6 +17,7 @@ from screens.propuestas_screen import PropuestasScreen
 from screens.reportes_screen import ReportesScreen
 from screens.votacion_screen import VotacionScreen
 from services.auth_service import AuthService
+from services.archivo_service import ArchivoService
 from services.catalog_service import CatalogService
 from services.comision_service import ComisionService
 from services.email_service import EmailService
@@ -59,6 +60,7 @@ class SigecomApp(App):
         self.auth_service = AuthService(self.configuracion)
         self.catalog_service = CatalogService(self.auth_service.client_manager)
         self.comision_service = ComisionService(self.auth_service.client_manager)
+        self.archivo_service = ArchivoService(self.auth_service.client_manager)
         self.presupuesto_service = PresupuestoService(self.auth_service.client_manager)
         self.finanzas_service = FinanzasService(self.auth_service.client_manager)
         self.propuesta_service = PropuestaService(self.auth_service.client_manager)

@@ -1,0 +1,2 @@
+alter table public.comisiones add column if not exists es_general boolean not null default false;
+insert into public.comisiones(titulo,descripcion,fecha_inicio,id_estado,creado_por,id_espacio,es_general) select e.nombre||' General','Área general del espacio de trabajo',current_date,1,e.creado_por,e.id_espacio,true from public.espacios_trabajo e where not exists(select 1 from public.comisiones c where c.id_espacio=e.id_espacio and c.es_general);

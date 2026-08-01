@@ -1,0 +1,4 @@
+project_id = "sigecom"
+
+[functions.sigecom-chat]
+verify_jwt = true

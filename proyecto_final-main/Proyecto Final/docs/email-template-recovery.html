@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Recuperar acceso a SIGECOM</title>
+  </head>
+  <body style="margin:0;padding:0;background:#eef4fb;font-family:Arial,'Segoe UI',sans-serif;color:#172033">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef4fb;padding:32px 12px">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 14px 38px rgba(13,53,110,.14)">
+            <tr>
+              <td style="padding:30px 36px;background:linear-gradient(135deg,#062d68,#0877e6);color:#ffffff">
+                <img src="{{ .SiteURL }}/sigecom-email-logo.png" width="86" alt="SIGECOM" style="display:block;width:86px;max-width:86px;height:auto;margin:0 0 16px;border:0;background:#ffffff;border-radius:14px;padding:8px">
+                <div style="font-size:13px;font-weight:700;letter-spacing:3px;opacity:.82">SISTEMA INTEGRAL</div>
+                <div style="margin-top:6px;font-size:38px;font-weight:900;letter-spacing:4px">SIGECOM</div>
+                <div style="margin-top:5px;font-size:14px;opacity:.86">Gestión segura de comisiones</div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:38px 36px 12px">
+                <div style="display:inline-block;padding:6px 10px;border-radius:999px;background:#e9f2ff;color:#075ebf;font-size:12px;font-weight:700">RECUPERACIÓN DE CUENTA</div>
+                <h1 style="margin:18px 0 12px;font-size:27px;line-height:1.2;color:#102b58">Restablece tu contraseña</h1>
+                <p style="margin:0 0 16px;color:#52647f;font-size:16px;line-height:1.65">Hola, recibimos una solicitud para cambiar la contraseña asociada a <strong style="color:#172033">{{ .Email }}</strong>.</p>
+                <p style="margin:0;color:#52647f;font-size:16px;line-height:1.65">Usa el siguiente botón para crear una contraseña nueva y recuperar el acceso a SIGECOM.</p>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding:26px 36px">
+                <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:15px 28px;border-radius:11px;background:#0877e6;color:#ffffff;text-decoration:none;font-size:16px;font-weight:800;box-shadow:0 8px 20px rgba(8,119,230,.25)">Crear nueva contraseña</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:0 36px 34px">
+                <div style="padding:16px;border-left:4px solid #f2b84b;border-radius:8px;background:#fff8e8;color:#705522;font-size:13px;line-height:1.55">Si no solicitaste este cambio, ignora el correo. Tu contraseña actual seguirá funcionando y nadie podrá cambiarla sin este enlace.</div>
+                <p style="margin:22px 0 0;color:#7a899f;font-size:12px;line-height:1.55">Por seguridad, este enlace es temporal y solo puede utilizarse una vez. SIGECOM nunca solicitará tu contraseña por correo.</p>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding:18px 28px;background:#f4f7fb;color:#718096;font-size:11px">SIGECOM · Sistema Integral de Gestión de Comisión</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

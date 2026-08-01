@@ -1,0 +1,2 @@
+-- La función transaccional resolver_solicitud_espacio valida al responsable,
+-- incorpora al miembro y genera su notificación en una sola operación.

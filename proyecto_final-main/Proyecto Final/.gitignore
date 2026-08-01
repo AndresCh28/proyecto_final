@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+assets/session_store.json
+.env
+supabase/functions/.env
+supabase/.temp/
+web/node_modules/
+web/dist/
+output/
+tmp/
